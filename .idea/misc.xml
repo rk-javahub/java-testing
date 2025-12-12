@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/junit5-demo/pom.xml" />
         <option value="$PROJECT_DIR$/junit5-assertj-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/junit5-mockito-demo/pom.xml" />
       </list>
     </option>
   </component>
