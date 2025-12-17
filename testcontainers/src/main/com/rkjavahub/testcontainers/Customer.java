@@ -23,8 +23,7 @@ class Customer {
 
   public Customer() {}
 
-  public Customer(Long id, String name, String email) {
-    this.id = id;
+  public Customer(String name, String email) {
     this.name = name;
     this.email = email;
   }

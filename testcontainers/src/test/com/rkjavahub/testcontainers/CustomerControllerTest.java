@@ -14,6 +14,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.oracle.OracleContainer;
 import org.testcontainers.utility.DockerImageName;
 
+import java.time.Duration;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -22,16 +23,19 @@ import static org.hamcrest.Matchers.hasSize;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CustomerControllerTest {
 
-    static DockerImageName myImage = DockerImageName.parse("gvenzl/oracle-xe:21").asCompatibleSubstituteFor("gvenzl/oracle-free");
+    static DockerImageName myImage = DockerImageName.parse("gvenzl/oracle-xe:21-slim").asCompatibleSubstituteFor("gvenzl/oracle-free");
 
     static OracleContainer oracle =
             new OracleContainer(myImage)
-                    .withDatabaseName("XEPDB1")
+                   /* .withDatabaseName("testdb")
                     .withUsername("rohit")
-                    .withPassword("rohit007")
-                    .withStartupTimeoutSeconds(300);
+                    .withPassword("rohit007")*/
+                    .withStartupTimeout(Duration.ofMinutes(5))
+                    .withReuse(false);
+
     @Autowired
     CustomerRepository customerRepository;
+
     @LocalServerPort
     private Integer port;
 
@@ -57,18 +61,21 @@ class CustomerControllerTest {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
         customerRepository.deleteAll();
+        System.out.println("Using port: " + port);
     }
 
     @Test
     void shouldGetAllCustomers() {
         List<Customer> customers = List.of(
-                new Customer(null, "Rohit", "rohit@gmail.com"),
-                new Customer(null, "Sachin", "sachin@gmail.com")
+                new Customer("Rohit", "rohit@gmail.com"),
+                new Customer("Sachin", "sachin@gmail.com")
         );
         customerRepository.saveAll(customers);
 
+        System.out.println("Using port 1 : " + port);
         given()
                 .contentType(ContentType.JSON)
+                .port(port)
                 .when()
                 .get("/api/customers")
                 .then()
