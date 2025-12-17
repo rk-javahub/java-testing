@@ -55,5 +55,4 @@ class SalesServiceTest {
         String mostSoldProduct = salesService.getMostSoldProduct();
         assertThat(mostSoldProduct).isEqualTo("P101");
     }
-
 }

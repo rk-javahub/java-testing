@@ -11,5 +11,15 @@
         <module name="junit5-demo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="testcontainer-demo" target="17" />
+      <module name="testcontainers-demo" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="testcontainer-demo" options="-parameters" />
+      <module name="testcontainers-demo" options="-parameters" />
+    </option>
   </component>
 </project>

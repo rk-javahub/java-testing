@@ -7,7 +7,15 @@
         <option value="$PROJECT_DIR$/junit5-demo/pom.xml" />
         <option value="$PROJECT_DIR$/junit5-assertj-demo/pom.xml" />
         <option value="$PROJECT_DIR$/junit5-mockito-demo/pom.xml" />
+        <option value="$USER_HOME$/Downloads/testcontainer-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/testcontainers/pom.xml" />
+        <option value="$PROJECT_DIR$/testcontainers-demo/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/testcontainers-demo/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
